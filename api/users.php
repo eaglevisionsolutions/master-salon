@@ -3,6 +3,22 @@ header('Content-Type: application/json');
 require_once '../includes/db.php';
 require_once '../includes/auth.php';
 require_login();
+
+// Add this block before the admin check to allow all logged-in users to get their own info
+if (isset($_GET['me'])) {
+    $user_id = current_user_id();
+    $stmt = $pdo->prepare("SELECT id, full_name, email, role FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($user) {
+        echo json_encode($user);
+    } else {
+        http_response_code(404);
+        echo json_encode(['error' => 'User not found']);
+    }
+    exit;
+}
+
 if (current_user_role() !== 'admin') {
     http_response_code(403);
     echo json_encode(['error'=>'Forbidden']);

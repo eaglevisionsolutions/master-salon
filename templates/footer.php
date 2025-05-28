@@ -6,5 +6,6 @@
         All rights reserved.
     </small>
 </footer>
+<script src="/assets/js/auth.js"></script>
 </body>
 </html>

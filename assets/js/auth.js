@@ -19,6 +19,7 @@ $(function() {
             }
         });
     });
+
     $('#registerForm').on('submit', function(e) {
         e.preventDefault();
         $.ajax({
@@ -39,6 +40,14 @@ $(function() {
             error: function(xhr) {
                 alert(xhr.responseJSON.error || 'Registration failed');
             }
+        });
+    });
+
+    // Handle logout
+    $('#logoutBtn').on('click', function(e) {
+        e.preventDefault();
+        $.get('/api/logout.php', function() {
+            window.location.href = '/login.php';
         });
     });
 });

@@ -1,5 +1,5 @@
 <?php
-require_once 'templates/header.php';
+require_once __DIR__ . '/../templates/header.php';
 ?>
 <h2>Reports & Analytics</h2>
 <div class="dashboard-cards">
@@ -18,5 +18,5 @@ require_once 'templates/header.php';
 </div>
 <script src="assets/js/reports.js"></script>
 <?php
-require_once 'templates/footer.php';
+require_once __DIR__ . '/../templates/footer.php';
 ?>
