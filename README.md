@@ -106,4 +106,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ## Support
 
-For questions, feature requests, or support, please open an issue or contact [support@salonspa.com](mailto:support@eaglevisionsolutions.ca).
+For questions, feature requests, or support, please open an issue or contact [support@eaglevisionsolutions.ca](mailto:support@eaglevisionsolutions.ca).
