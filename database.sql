@@ -42,16 +42,17 @@ CREATE TABLE services (
 -- Appointments
 CREATE TABLE appointments (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
+    customer_id INT NOT NULL,
     staff_id INT,
-    service_id INT,
-    scheduled_at DATETIME,
+    service_id INT NOT NULL,
+    scheduled_at DATETIME NOT NULL,
     status ENUM('booked', 'completed', 'cancelled', 'no-show') DEFAULT 'booked',
     notes TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (customer_id) REFERENCES users(id),
-    FOREIGN KEY (staff_id) REFERENCES users(id),
-    FOREIGN KEY (service_id) REFERENCES services(id)
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (staff_id) REFERENCES users(id) ON DELETE SET NULL,
+    FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE CASCADE
 );
 
 -- Inventory & Bulk Products
