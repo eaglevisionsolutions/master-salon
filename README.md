@@ -33,7 +33,7 @@ A modern, asynchronous web application for managing salon and spa operations, bu
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/salon-spa-app.git
+   git clone https://github.com/yourusername/master-salon.git
    cd salon-spa-app
    ```
 
