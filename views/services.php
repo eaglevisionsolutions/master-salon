@@ -30,7 +30,10 @@ include __DIR__ . '/../templates/modals/service_modal.php';
             <label>Name: <input type="text" id="serviceName" name="name" required></label><br>
             <label>Description: <input type="text" id="serviceDesc" name="description"></label><br>
             <label>Price ($): <input type="number" id="servicePrice" name="price" step="0.01" required></label><br>
-            <label>Duration (minutes): <input type="number" id="serviceDuration" name="duration" required></label><br>
+            <label>Duration:
+                <input type="number" id="serviceDurationHours" name="duration_hours" min="0" max="23" style="width:60px;" required> hours
+                <input type="number" id="serviceDurationMinutes" name="duration_extra_minutes" min="0" max="59" style="width:60px;" required> minutes
+            </label><br>
             <button type="submit" id="serviceSaveBtn">Save</button>
         </form>
     </div>

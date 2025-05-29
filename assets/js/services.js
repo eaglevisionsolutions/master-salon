@@ -6,7 +6,15 @@ $(function() {
         setTimeout(() => $('#serviceMessage').html(''), 3000);
     }
 
-   $(function() {
+    function formatDuration(minutes) {
+        const h = Math.floor(minutes / 60);
+        const m = minutes % 60;
+        let str = '';
+        if (h > 0) str += h + 'h ';
+        str += m + 'm';
+        return str;
+    }
+
     function loadServices() {
         $.get('/api/services.php', function(data) {
             let html = '';
@@ -16,7 +24,7 @@ $(function() {
                         <td data-label="Name">${service.name}</td>
                         <td data-label="Description">${service.description}</td>
                         <td data-label="Price ($)">${service.price}</td>
-                        <td data-label="Duration (minutes)">${service.duration_minutes}</td>
+                        <td data-label="Duration">${formatDuration(service.duration_minutes)}</td>
                         <td data-label="Actions">
                             <button class="editServiceBtn" data-id="${service.id}" title="Edit"><i class="fa fa-pencil-alt"></i></button>
                             <button class="deleteServiceBtn" data-id="${service.id}" title="Delete"><i class="fa fa-trash"></i></button>
@@ -33,14 +41,13 @@ $(function() {
     // Initial load
     loadServices();
 
-    // You can add your add/edit/delete handlers here as before
-});
-
     // Open modal for add
     $('#addServiceBtn').on('click', function() {
         $('#serviceModalTitle').text('Add Service');
         $('#serviceForm')[0].reset();
         $('#serviceId').val('');
+        $('#serviceDurationHours').val('');
+        $('#serviceDurationMinutes').val('');
         $('#serviceModal').show();
     });
 
@@ -53,7 +60,11 @@ $(function() {
             $('#serviceName').val(service.name);
             $('#serviceDesc').val(service.description);
             $('#servicePrice').val(service.price);
-            $('#serviceDuration').val(service.duration);
+            // Split duration_minutes into hours and minutes
+            const h = Math.floor(service.duration_minutes / 60);
+            const m = service.duration_minutes % 60;
+            $('#serviceDurationHours').val(h);
+            $('#serviceDurationMinutes').val(m);
             $('#serviceModal').show();
         });
     });
@@ -62,11 +73,14 @@ $(function() {
     $('#serviceForm').on('submit', function(e) {
         e.preventDefault();
         const id = $('#serviceId').val();
+        const hours = parseInt($('#serviceDurationHours').val(), 10) || 0;
+        const minutes = parseInt($('#serviceDurationMinutes').val(), 10) || 0;
+        const totalMinutes = hours * 60 + minutes;
         const payload = {
             name: $('#serviceName').val(),
             description: $('#serviceDesc').val(),
             price: $('#servicePrice').val(),
-            duration_minutes: $('#serviceDuration').val() // <-- FIXED
+            duration_minutes: totalMinutes
         };
         let method = id ? 'PUT' : 'POST';
         if (id) payload.id = id;
@@ -110,7 +124,4 @@ $(function() {
 
     // Close modal
     $('.close-modal').on('click', function() { $('#serviceModal').hide(); });
-
-    // Initial load
-    loadServices();
 });
