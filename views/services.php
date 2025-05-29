@@ -1,9 +1,10 @@
 <?php
 require_once __DIR__ . '/../templates/header.php';
-include 'templates/modals/service_modal.php';
+include __DIR__ . '/../templates/modals/service_modal.php';
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <h2>Services Menu</h2>
-<button onclick="$('#addServiceModal').show();">Add Service</button>
+<div id="serviceMessage"></div>
 <table id="servicesTable">
     <thead>
         <tr>
@@ -11,16 +12,31 @@ include 'templates/modals/service_modal.php';
             <th>Description</th>
             <th>Price ($)</th>
             <th>Duration</th>
+            <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="servicesTableBody">
       <!-- Filled by JS -->
     </tbody>
 </table>
-<script src="assets/js/services.js"></script>
-<script>
-$('.close-modal').on('click', function() { $(this).closest('.modal').hide(); });
-</script>
+<button id="addServiceBtn">Add Service</button>
+<!-- Add/Edit Service Modal -->
+<div id="serviceModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close-modal" style="float:right;cursor:pointer;">&times;</span>
+        <h3 id="serviceModalTitle">Add Service</h3>
+        <form id="serviceForm">
+            <input type="hidden" id="serviceId" name="id">
+            <label>Name: <input type="text" id="serviceName" name="name" required></label><br>
+            <label>Description: <input type="text" id="serviceDesc" name="description"></label><br>
+            <label>Price ($): <input type="number" id="servicePrice" name="price" step="0.01" required></label><br>
+            <label>Duration (minutes): <input type="number" id="serviceDuration" name="duration" required></label><br>
+            <button type="submit" id="serviceSaveBtn">Save</button>
+        </form>
+    </div>
+</div>
+
+<script src="/assets/js/services.js"></script>
 <?php
 require_once __DIR__ . '/../templates/footer.php';
 ?>

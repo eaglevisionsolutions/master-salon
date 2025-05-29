@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    max-width: 500px;
+    max-width: 80%;
     margin: 40px auto;
     background: #fff;
     border-radius: 8px;
@@ -28,6 +28,8 @@ form {
     gap: 16px;
     margin: 0 auto;
     max-width: 350px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 32px 24px 24px 24px;
 }
 
 input[type="text"],
@@ -156,6 +158,62 @@ hr {
     margin: 24px 0;
 }
 
+/* Modern Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin: 24px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    font-size: 1rem;
+}
+
+thead {
+    background: #007bff;
+    color: #fff;
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+th {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: #f5faff;
+    transition: background 0.2s;
+}
+
+button.editServiceBtn, button.deleteServiceBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 10px;
+    font-size: 1.1em;
+    color: #007bff;
+    transition: color 0.2s;
+    vertical-align: middle;
+}
+
+button.editServiceBtn:hover {
+    color: #28a745;
+}
+
+button.deleteServiceBtn:hover {
+    color: #dc3545;
+}
+
 /* Responsive */
 @media (max-width: 700px) {
     .container {
@@ -168,5 +226,50 @@ hr {
     }
     .card {
         max-width: 100%;
+    }
+}
+
+/* Responsive Table */
+@media (max-width: 900px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    thead {
+        display: none;
+    }
+    tr {
+        margin-bottom: 18px;
+        border-radius: 8px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+        background: #fff;
+        padding: 10px 0;
+    }
+    td {
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #f0f0f0;
+        min-height: 38px;
+    }
+    td:last-child {
+        border-bottom: none;
+    }
+    td:before {
+        position: absolute;
+        top: 14px;
+        left: 16px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: 600;
+        color: #007bff;
+        content: attr(data-label);
+    }
+}
+
+/* Optional: Make action buttons larger on mobile */
+@media (max-width: 600px) {
+    button.editServiceBtn, button.deleteServiceBtn {
+        font-size: 1.3em;
+        padding: 10px 14px;
     }
 }
