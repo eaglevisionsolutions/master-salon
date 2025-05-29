@@ -7,6 +7,7 @@ CREATE TABLE users (
     role ENUM('admin', 'staff', 'customer') DEFAULT 'customer',
     full_name VARCHAR(100),
     phone VARCHAR(20),
+    profile_pic VARCHAR(255), -- Added for profile picture functionality
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_login DATETIME
 );

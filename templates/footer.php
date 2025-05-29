@@ -1,4 +1,3 @@
-</div> <!-- .container -->
 <footer>
     <hr>
     <small>
@@ -6,6 +5,7 @@
         All rights reserved.
     </small>
 </footer>
+</div> <!-- .container -->
 <script src="/assets/js/auth.js"></script>
 </body>
 </html>

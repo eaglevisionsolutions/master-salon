@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../templates/header.php';
 include 'templates/modals/appointment_modal.php';
 session_start();
-$userRole = $_SESSION['role'] ?? 'guest'; // 'customer', 'staff', 'admin'
 ?>
 <div class="appointments-container">
     <?php if ($userRole === 'customer'): ?>

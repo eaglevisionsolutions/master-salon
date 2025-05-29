@@ -8,8 +8,8 @@ error_reporting(E_ALL);
 $role = $_SESSION['role'] ?? '';
 ?>
 <h2>Dashboard</h2>
-<p>Welcome, <span id="userFullName">Loading...</span>!</p>
 <div class="dashboard-cards">
+    <p>Welcome</span>!</p>
     <div class="card">
         <h3>Today's Appointments</h3>
         <div id="todayAppointments">
