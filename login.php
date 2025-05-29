@@ -10,6 +10,7 @@ $csrf_token = generate_csrf_token();
 ?>
 <h2>Login</h2>
 <form id="loginForm">
+    <div id="loginError"></div> <!-- Error message will be injected here -->
     <input type="text" id="loginUsername" name="username" placeholder="Username" required><br>
     <input type="password" id="loginPassword" name="password" placeholder="Password" required><br>
     <input type="hidden" id="csrf_token" name="csrf_token" value="<?= $csrf_token ?>">
