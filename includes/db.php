@@ -1,9 +1,9 @@
 <?php
 // Database connection file
 $host = 'localhost';
-$db   = 'salon_spa';
-$user = 'dbuser';
-$pass = 'dbpass';
+$db   = 'hairbynatalie_msapp';
+$user = 'hairbynatalie_msapp_admin';
+$pass = 'j&GFG]RIef}Q';
 $charset = 'utf8mb4';
 
 $options = [
@@ -21,5 +21,11 @@ try {
     http_response_code(500);
     echo json_encode(['error' => 'Database connection failed']);
     exit;
+}
+
+// ADD THIS FUNCTION:
+function getDb() {
+    global $pdo;
+    return $pdo;
 }
 ?>
