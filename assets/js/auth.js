@@ -1,6 +1,9 @@
 $(function() {
     $('#loginForm').on('submit', function(e) {
         e.preventDefault();
+        // Remove any previous error message
+        $('#loginForm .form-error').remove();
+
         $.ajax({
             url: 'api/login.php',
             type: 'POST',
@@ -15,13 +18,17 @@ $(function() {
                 window.location.href = 'index.php';
             },
             error: function(xhr) {
-                alert(xhr.responseJSON.error || 'Login failed');
+                let msg = (xhr.responseJSON && xhr.responseJSON.error) ? xhr.responseJSON.error : 'Login failed';
+                // Show error above the form's submit button
+                $('#loginForm').prepend('<div class="form-error" style="color:red;margin-bottom:10px;">' + msg + '</div>');
             }
         });
     });
 
     $('#registerForm').on('submit', function(e) {
         e.preventDefault();
+        $('#registerForm .form-error').remove();
+
         $.ajax({
             url: 'api/register.php',
             type: 'POST',
@@ -38,7 +45,8 @@ $(function() {
                 window.location.href = 'login.php';
             },
             error: function(xhr) {
-                alert(xhr.responseJSON.error || 'Registration failed');
+                let msg = (xhr.responseJSON && xhr.responseJSON.error) ? xhr.responseJSON.error : 'Registration failed';
+                $('#registerForm').prepend('<div class="form-error" style="color:red;margin-bottom:10px;">' + msg + '</div>');
             }
         });
     });
