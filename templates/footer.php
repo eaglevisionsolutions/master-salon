@@ -2,7 +2,7 @@
 <footer>
     <hr>
     <small>
-        &copy; <?= date('Y') ?> <?= defined('APP_NAME') ? APP_NAME : "Salon & Spa Manager" ?>.
+        &copy; <?= date('Y') ?> <?= defined('APP_NAME') ? APP_NAME : "Salonware" ?>.
         All rights reserved.
     </small>
 </footer>
